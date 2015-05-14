@@ -1,7 +1,8 @@
 from django.conf.urls import patterns
 from django.conf.urls import url
 
-from rug_openstack_dashboard.dashboards.admin.rugtenants import views
+from akanda_horizon.rug_openstack_dashboard.dashboards.admin.rugtenants \
+    import views
 
 TENANT = r'^(?P<tenant_id>[^/]+)/%s$'
 

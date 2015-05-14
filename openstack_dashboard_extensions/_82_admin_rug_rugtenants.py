@@ -6,5 +6,7 @@ PANEL_DASHBOARD = 'admin'
 PANEL_GROUP = 'rug'
 
 # Python panel class of the PANEL to be added.
-ADD_PANEL = \
-    'rug_openstack_dashboard.dashboards.admin.rugtenants.panel.Rugtenants'
+ADD_PANEL = (
+    'akanda_horizon.rug_openstack_dashboard.dashboards.admin.rugtenants.'
+    'panel.Rugtenants')
+

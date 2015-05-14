@@ -7,4 +7,4 @@ PANEL_GROUP = 'rug'
 
 # Python panel class of the PANEL to be added.
 ADD_PANEL = \
-    'rug_openstack_dashboard.dashboards.admin.rugrouters.panel.Rugrouters'
+    'akanda_horizon.rug_openstack_dashboard.dashboards.admin.rugrouters.panel.Rugrouters'

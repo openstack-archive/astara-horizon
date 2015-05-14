@@ -5,7 +5,7 @@ from django.utils.translation import ungettext_lazy
 from horizon import tables
 from horizon import exceptions
 
-from rug_openstack_dashboard.api.rug import RugClient
+from akanda_horizon.rug_openstack_dashboard.api.rug import RugClient
 
 
 rc = RugClient()
