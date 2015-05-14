@@ -7,7 +7,7 @@ from horizon import messages
 
 from openstack_dashboard.dashboards.project.images import utils
 
-from rug_openstack_dashboard.api.rug import RugClient
+from akanda_horizon.rug_openstack_dashboard.api.rug import RugClient
 
 
 rc = RugClient()

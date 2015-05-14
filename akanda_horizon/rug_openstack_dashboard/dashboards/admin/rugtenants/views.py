@@ -10,11 +10,11 @@ from horizon import forms
 from openstack_dashboard import api
 from openstack_dashboard import policy
 
-from rug_openstack_dashboard.dashboards.admin.rugtenants import \
-    tables as tenant_tables
-from rug_openstack_dashboard.dashboards.admin.rugrouters import \
-    forms as rugrouters_forms
-from rug_openstack_dashboard.api.rug import RugClient
+from akanda_horizon.rug_openstack_dashboard.dashboards.admin.rugtenants \
+    import tables as tenant_tables
+from akanda_horizon.rug_openstack_dashboard.dashboards.admin.rugrouters \
+    import forms as rugrouters_forms
+from akanda_horizon.rug_openstack_dashboard.api.rug import RugClient
 
 
 rc = RugClient()
