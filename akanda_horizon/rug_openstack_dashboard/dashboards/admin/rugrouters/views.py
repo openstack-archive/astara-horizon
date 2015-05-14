@@ -8,11 +8,11 @@ from horizon import exceptions
 
 from openstack_dashboard import api
 
-from rug_openstack_dashboard.dashboards.admin.rugrouters import \
+from akanda_horizon.rug_openstack_dashboard.dashboards.admin.rugrouters import \
     tables as router_tables
-from rug_openstack_dashboard.dashboards.admin.rugrouters import \
+from akanda_horizon.rug_openstack_dashboard.dashboards.admin.rugrouters import \
     forms as rugrouters_forms
-from rug_openstack_dashboard.api.rug import RugClient
+from akanda_horizon.rug_openstack_dashboard.api.rug import RugClient
 
 
 rc = RugClient()

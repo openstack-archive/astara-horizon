@@ -3,13 +3,13 @@
 1. Install module
     
     ```
-    pip install akanda-rug-horizon
+    pip install akanda-horizon
     ```
     
 2. Copy extension files from the project root folder to ```/etc/openstack_dashboard/local/enabled``` or to ```/opt/stack/horizon/openstack_dashboard/local/enabled``` folder
 
     ```
-    cp _80_admin_rug.py _81_admin_rug_rugrouters.py _82_admin_rug_rugtenants.py /opt/stack/horizon/openstack_dashboard/local/enabled/
+    cp openstack_dashboard_extensions/*.py /opt/stack/horizon/openstack_dashboard/local/enabled/
     ```
 
 3. Specify rug management prefix, rug api port, and router image uuid in ```local_setting.py```
