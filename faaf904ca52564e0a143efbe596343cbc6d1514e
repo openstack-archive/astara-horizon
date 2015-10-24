@@ -1,0 +1,8 @@
+Verified+2: Jenkins
+Code-Review+2: Adam Gandelman <adamg@ubuntu.com>
+Workflow+1: Adam Gandelman <adamg@ubuntu.com>
+Submitted-by: Jenkins
+Submitted-at: Sat, 24 Oct 2015 06:52:35 +0000
+Reviewed-on: https://review.openstack.org/239154
+Project: openstack/akanda-horizon
+Branch: refs/heads/stable/liberty
