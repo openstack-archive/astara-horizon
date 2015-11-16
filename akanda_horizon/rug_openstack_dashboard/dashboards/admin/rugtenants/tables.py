@@ -49,7 +49,7 @@ class TenantManageAction(tables.BatchAction):
 
     def action(self, request, obj_id):
         try:
-            rc.tenant_manage(obj_id)
+            rc.tenant_manage(request, obj_id)
         except Exception:
             msg = _('Failed to manage route %s') % obj_id
             exceptions.handle(request, msg)
@@ -81,7 +81,7 @@ class TenantDebugAction(tables.BatchAction):
 
     def action(self, request, obj_id):
         try:
-            rc.tenant_debug(obj_id)
+            rc.tenant_debug(request, obj_id)
         except Exception:
             msg = _('Failed to manage route %s') % obj_id
             exceptions.handle(request, msg)
@@ -129,7 +129,7 @@ class RouterManageAction(tables.BatchAction):
 
     def action(self, request, obj_id):
         try:
-            rc.router_manage(obj_id)
+            rc.router_manage(request, obj_id)
         except Exception:
             msg = _('Failed to manage route %s') % obj_id
             exceptions.handle(request, msg)
@@ -161,7 +161,7 @@ class RouterDebugAction(tables.BatchAction):
 
     def action(self, request, obj_id):
         try:
-            rc.router_debug(obj_id)
+            rc.router_debug(request, obj_id)
         except Exception:
             msg = _('Failed to manage route %s') % obj_id
             exceptions.handle(request, msg)
@@ -193,7 +193,7 @@ class RouterUpdateAction(tables.BatchAction):
 
     def action(self, request, obj_id):
         try:
-            rc.router_update(obj_id)
+            rc.router_update(request, obj_id)
         except Exception:
             msg = _('Failed to manage route %s') % obj_id
             exceptions.handle(request, msg)
