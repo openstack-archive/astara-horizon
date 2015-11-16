@@ -1,30 +1,13 @@
 from datetime import datetime
 from django.conf import settings
 from horizon.utils import functions as utils
-import netaddr
 import requests as r
+from openstack_dashboard.api import base
 from openstack_dashboard.api.nova import novaclient
 from openstack_dashboard.api.neutron import neutronclient
 
 
-def _mgt_url(host, port, path):
-    if ':' in host:
-        host = '[%s]' % host
-    return 'http://%s:%s%s' % (host, port, path)
-
-
-def _make_request(url):
-    try:
-        return r.put(url).ok
-    except r.RequestException:
-        return False
-
-
-def _get_local_service_ip(management_prefix):
-    mgt_net = netaddr.IPNetwork(management_prefix)
-    rug_ip = '%s/%s' % (netaddr.IPAddress(mgt_net.first + 1),
-                        mgt_net.prefixlen)
-    return rug_ip
+KEYSTONE_SERVICE_NAME = 'astara'
 
 
 class Router(object):
@@ -43,39 +26,41 @@ class Router(object):
 
 class RugClient(object):
     def __init__(self):
-        self.host = (
-            _get_local_service_ip(settings.RUG_MANAGEMENT_PREFIX)
-            .split('/')[0]
-        )
-        self.port = settings.RUG_API_PORT
         self.image_uuid = settings.ROUTER_IMAGE_UUID
         self.api_limit = getattr(settings, 'API_RESULT_LIMIT', 1000)
 
-    def poll(self):
+    def _make_request(self, request, path):
+        url = base.url_for(request, KEYSTONE_SERVICE_NAME) + path
+        try:
+            return r.put(url).ok
+        except r.RequestException:
+            return False
+
+    def poll(self, request):
         path = '/poll'
-        return _make_request(_mgt_url(self.host, self.port, path))
+        return self._make_request(request, path)
 
-    def config_reload(self):
+    def config_reload(self, request):
         path = '/config/reload'
-        return _make_request(_mgt_url(self.host, self.port, path))
+        return self._make_request(request, path)
 
-    def workers_debug(self):
+    def workers_debug(self, request):
         path = '/workers/debug'
-        return _make_request(_mgt_url(self.host, self.port, path))
+        return self._make_request(request, path)
 
-    def router_debug(self, router_id):
+    def router_debug(self, request, router_id):
         path = '/router/debug/{router_id}'.format(router_id=router_id)
-        return _make_request(_mgt_url(self.host, self.port, path))
+        return self._make_request(request, path)
 
-    def router_manage(self, router_id):
+    def router_manage(self, request, router_id):
         path = '/router/manage/{router_id}'.format(router_id=router_id)
-        return _make_request(_mgt_url(self.host, self.port, path))
+        return self._make_request(request, path)
 
-    def router_update(self, router_id):
+    def router_update(self, request, router_id):
         path = '/router/update/{router_id}'.format(router_id=router_id)
-        return _make_request(_mgt_url(self.host, self.port, path))
+        return self._make_request(request, path)
 
-    def router_rebuild(self, router_id, router_image_uuid=None):
+    def router_rebuild(self, request, router_id, router_image_uuid=None):
         if router_image_uuid:
             path = ('/router/rebuild/{router_id}/--router_image_uuid/' +
                     '{router_image_uuid}').format(
@@ -84,15 +69,15 @@ class RugClient(object):
             )
         else:
             path = '/router/rebuild/{router_id}/'.format(router_id=router_id)
-        return _make_request(_mgt_url(self.host, self.port, path))
+        return self._make_request(request, path)
 
-    def tenant_debug(self, tenant_id):
+    def tenant_debug(self, request, tenant_id):
         path = '/tenant/debug/{tenant_id}'.format(tenant_id=tenant_id)
-        return _make_request(_mgt_url(self.host, self.port, path))
+        return self._make_request(request, path)
 
-    def tenant_manage(self, tenant_id):
+    def tenant_manage(self, request, tenant_id):
         path = '/tenant/manage/{tenant_id}'.format(tenant_id=tenant_id)
-        return _make_request(_mgt_url(self.host, self.port, path))
+        return self._make_request(request, path)
 
     def get_routers(self, request, **search_opts):
         page_size = utils.get_page_size(request)
