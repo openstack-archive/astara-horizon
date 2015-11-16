@@ -36,7 +36,7 @@ class ManageAction(tables.BatchAction):
 
     def action(self, request, obj_id):
         try:
-            rc.router_manage(obj_id)
+            rc.router_manage(request, obj_id)
         except Exception:
             msg = _('Failed to manage route %s') % obj_id
             exceptions.handle(request, msg)
@@ -68,7 +68,7 @@ class DebugAction(tables.BatchAction):
 
     def action(self, request, obj_id):
         try:
-            rc.router_debug(obj_id)
+            rc.router_debug(request, obj_id)
         except Exception:
             msg = _('Failed to manage route %s') % obj_id
             exceptions.handle(request, msg)
@@ -100,7 +100,7 @@ class UpdateAction(tables.BatchAction):
 
     def action(self, request, obj_id):
         try:
-            rc.router_update(obj_id)
+            rc.router_update(request, obj_id)
         except Exception:
             msg = _('Failed to manage route %s') % obj_id
             exceptions.handle(request, msg)
