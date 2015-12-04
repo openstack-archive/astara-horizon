@@ -1,0 +1,27 @@
+{% extends "horizon/common/_modal_form.html" %}
+{% load i18n %}
+{% load url from future %}
+
+{% block form_id %}rebuild_astaratenants_form{% endblock %}
+{% block form_action %}{% url 'horizon:admin:astaratenants:rebuild' router_id=router_id tenant_id=tenant_id %}{% endblock %}
+
+{% block modal_id %}rebuild_astaratenants_modal{% endblock %}
+
+{% block modal-header %}{% trans "Rebuild Router" %}{% endblock %}
+
+{% block modal-body %}
+<div class="left">
+    <fieldset>
+        {% include "horizon/common/_form_fields.html" %}
+    </fieldset>
+</div>
+<div class="right">
+    <h3>{% trans "Description" %}:</h3>
+    <p>{% trans "Choose image to rebuild router" %}</p>
+</div>
+{% endblock %}
+
+{% block modal-footer %}
+  <input class="btn btn-primary" type="submit" value="{% trans "Rebuild Router" %}" />
+  <a href="{% url 'horizon:admin:astaratenants:index' %}" class="btn btn-default cancel">{% trans "Cancel" %}</a>
+{% endblock %}
