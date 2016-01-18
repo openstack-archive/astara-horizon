@@ -22,10 +22,10 @@ from horizon import exceptions
 
 from openstack_dashboard import api
 
-from astara_horizon.astara_openstack_dashboard.dashboards.admin.astararouters import \
-    tables as router_tables
-from astara_horizon.astara_openstack_dashboard.dashboards.admin.astararouters import \
-    forms as astararouters_forms
+from astara_horizon.astara_openstack_dashboard.dashboards.admin.astararouters \
+    import tables as router_tables
+from astara_horizon.astara_openstack_dashboard.dashboards.admin.astararouters \
+    import forms as astararouters_forms
 from astara_horizon.astara_openstack_dashboard.api.astara import AstaraClient
 
 
