@@ -1,0 +1,9 @@
+Code-Review+2: Adam Gandelman <adamg@ubuntu.com>
+Workflow+1: Adam Gandelman <adamg@ubuntu.com>
+Code-Review+1: Clint Adams <clint@gcfm.net>
+Verified+2: Jenkins
+Submitted-by: Jenkins
+Submitted-at: Tue, 19 Jan 2016 22:41:26 +0000
+Reviewed-on: https://review.openstack.org/268427
+Project: openstack/astara-horizon
+Branch: refs/heads/master
