@@ -1,4 +1,4 @@
-# Akanda Rug Horizon Extension
+# Astara Horizon Extension
 
 1. Install module
 
