@@ -35,7 +35,7 @@ def _image_choice_title(img):
 class PollForm(forms.SelfHandlingForm):
     def handle(self, request, data):
         try:
-            rc.poll()
+            rc.poll(request)
             messages.success(request, _('Routers were polled'))
         except Exception:
             exceptions.handle(request, _('Unable to poll routers.'))
@@ -69,9 +69,9 @@ class RebuildForm(forms.SelfHandlingForm):
     def handle(self, request, data):
         try:
             if data['image']:
-                rc.router_rebuild(data['router_id'], data['image'])
+                rc.router_rebuild(request, data['router_id'], data['image'])
             else:
-                rc.router_rebuild(data['router_id'])
+                rc.router_rebuild(request, data['router_id'])
             messages.success(request,
                              _('Rebuilt Router: %s.') % data['router_name'])
         except Exception:
